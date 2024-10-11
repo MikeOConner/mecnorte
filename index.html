@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Calculadora Los Santos Customs</title>
+  <style>
+    body {
+      font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #3b3b3b;
+      color: rgb(255, 255, 255);
+    }
+
+    .container {
+      width: 80%;
+      max-width: 1200px;
+      margin: 20px auto;
+      padding: 20px;
+      background-color: #505050;
+      border-radius: 25px;
+      box-shadow: 0 0 40px rgb(253, 253, 253);
+      overflow: hidden;
+    }
+
+    h1 {
+      text-align: center;
+    }
+
+    .table-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+
+    .table-container {
+      flex: 1 1 calc(50% - 20px); /* duas colunas com espaçamento */
+      box-sizing: border-box;
+      overflow-x: auto;
+      margin-bottom: 20px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    th, td {
+      border: 3px solid #0c0c0b;
+      padding: 8px;
+      text-align: left;
+      white-space: nowrap;
+    }
+
+    th {
+      background-color: #080808;
+    }
+    
+    .total {
+      margin-top: 20px;
+      text-align: center;
+    }
+
+    .total p {
+      font-size: 18px;
+    }
+
+    .total span {
+      font-weight: bold;
+      font-size: 20px;
+      color: #15e61c;
+    }
+
+    .scroll-to-top {
+      position: fixed;
+      right: 20px;
+      bottom: 20px;
+      background-color: #4CAF50;
+      color: #dddddd;
+      padding: 10px 20px;
+      border-radius: 5px;
+      cursor: pointer;
+      display: none;
+    }
+
+    .scroll-to-top:hover {
+      background-color: #45a049;
+    }
+
+    .select-all {
+      margin-bottom: 10px;
+    }
+
+    .reset-button {
+      display: block;
+      margin: 20px auto;
+      padding: 10px 20px;
+      background-color: #f5f105;
+      color: #050101;
+      border: none;
+      border-radius: 15px;
+      cursor: pointer;
+    }
+
+    .reset-button:hover {
+      background-color: #d40000;
+    }
+
+    img{
+        display: block;
+        margin: auto;
+    }
+    
+  </style>
+</head>
+<body>
+  <div class="container">
+    <img src="CALCULADORA.png" alt="" width="350"/>
+
+    <div class="table-row">
+      <div class="table-container">
+        <h2>PINTURA / ILUMINAÇÃO</h2>
+        <table class="item-list">
+          <tr>
+            <th>Item</th>
+            <th>Valor</th>
+            <th>Selecionar</th>
+          </tr>
+        </table>
+      </div>
+
+      <div class="table-container">
+        <h2>RODAS</h2>
+        <table class="item-list">
+          <tr>
+            <th>Item</th>
+            <th>Valor</th>
+            <th>Selecionar</th>
+          </tr>
+        </table>
+      </div>
+    </div>
+
+    <div class="table-row">
+      <div class="table-container">
+        <h2>ESTÉTICA</h2>
+        <table class="item-list">
+          <tr>
+            <th>Item</th>
+            <th>Valor</th>
+            <th>Selecionar</th>
+          </tr>
+        </table>
+      </div>
+
+      <div class="table-container">
+        <h2>ESTRUTURA</h2>
+        <table class="item-list">
+          <tr>
+            <th>Item</th>
+            <th>Valor</th>
+            <th>Selecionar</th>
+          </tr>
+        </table>
+      </div>
+    </div>
+
+    <div class="table-row">
+      <div class="table-container">
+        <h2>PERFORMANCE</h2>
+        <table class="item-list">
+          <tr>
+            <th>Item</th>
+            <th>Valor</th>
+            <th>Selecionar</th>
+          </tr>
+        </table>
+      </div>
+
+      <div class="table-container">
+        <h2>DESCONTOS</h2>
+        <table class="discount-list">
+          <tr>
+            <th>Empresa</th>
+            <th>Porcentagem</th>
+            <th>Selecionar</th>
+          </tr>
+        </table>
+      </div>
+    </div>
+
+    <!-- exibição do total -->
+    <div class="total">
+      <p>Total sem desconto: <span id="total-value">0</span></p>
+      <p>Total com desconto: <span id="total-discounted-value">0</span></p>
+    </div>
+
+    <button class="reset-button" onclick="resetCheckboxes()">RESETAR SELEÇÕES</button>
+
+  </div>
+
+  <!-- botão para ir para o topo -->
+  <div class="scroll-to-top" onclick="scrollToTop()">
+    Voltar ao topo
+  </div>
+
+  <script>
+    const tablesData = [
+      [
+        { nome: 'Cor primaria', valor: 3000 },
+        { nome: 'Perolado', valor: 3000 },
+        { nome: 'Cor secundaria', valor: 3000 },
+        { nome: 'Pintura placa', valor: 1500 },
+        { nome: 'Xenon aplicar', valor: 2000 },
+        { nome: 'Xenon + cor', valor: 3000 },
+        { nome: 'Neon aplicar', valor: 2000 },
+        { nome: 'Neon + cor', valor: 3000 }
+      ],
+      [
+        { nome: 'Trocar RODA', valor: 3000 },
+        { nome: 'Conserto Pneu', valor: 0 },
+        { nome: 'Cor Roda', valor: 3000 },
+        { nome: 'Custom', valor: 0 },
+        { nome: 'Drift', valor: 0 },
+        { nome: 'Fumaça', valor: 0 },
+        { nome: 'Blindagem normal', valor: 0 },
+        { nome: 'Blindagem policia', valor: 0 },
+      ],
+      [
+        { nome: 'Adesivo/Decal 1 a 7', valor: 0 },
+        { nome: 'Fume', valor: 2000 },
+        { nome: 'Buzina', valor: 0 },
+        { nome: 'Interior', valor: 0 },
+        { nome: 'Exterior', valor: 0 },
+        { nome: 'Extra', valor: 0 },
+        { nome: 'Extra I', valor: 0 },
+        { nome: 'Extra II', valor: 0 },
+        { nome: 'Extra III', valor: 0 },
+        { nome: 'Extra IV', valor: 0 },
+        { nome: 'Extra V', valor: 0 },
+      ],
+      [
+        { nome: 'Aerofólio', valor: 3000 },
+        { nome: 'Para-choque Dianteiro', valor: 3000 },
+        { nome: 'Para-choque Traseiro', valor: 3000 },
+        { nome: 'Saias', valor: 3000 },
+        { nome: 'Escapamento', valor: 3000 },
+        { nome: 'Para-lama Dianteiro', valor: 3000 },
+        { nome: 'Para-lama Traseiro', valor: 3000 },
+        { nome: 'Chasssi', valor: 3000 },
+        { nome: 'Porta', valor: 3000 },
+        { nome: 'Capa de farol', valor: 3000 },
+        { nome: 'Grelha', valor: 3000 },
+        { nome: 'Capo 1 a 9', valor: 3000 },
+        { nome: 'Teto 1 a 9', valor: 3000 },
+      ],
+      [
+        { nome: 'Motor I', valor: 0 },
+        { nome: 'Motor II', valor: 0 },
+        { nome: 'Motor III', valor: 0 },
+        { nome: 'Motor IV', valor: 0 },
+        { nome: 'Motor V', valor: 0 },
+        { nome: 'Freios I', valor: 0 },
+        { nome: 'Freios II', valor: 0 },
+        { nome: 'Freios III', valor: 0 },
+        { nome: 'Freios IV', valor: 0 },
+        { nome: 'Transmissão I', valor: 0 },
+        { nome: 'Transmissão II', valor: 0 },
+        { nome: 'Transmissão III', valor: 0 },
+        { nome: 'Transmissão IV', valor: 0 },
+        { nome: 'Suspensão I', valor: 0 },
+        { nome: 'Suspensão II', valor: 0 },
+        { nome: 'Suspensão III', valor: 0 },
+        { nome: 'Suspensão IV', valor: 0 },
+        { nome: 'Suspensão V', valor: 0 },
+        { nome: 'Blindagem 20%', valor: 0 },
+        { nome: 'Blindagem 40%', valor: 0 },
+        { nome: 'Blindagem 60%', valor: 0 },
+        { nome: 'Blindagem 80%', valor: 0 },
+        { nome: 'Blindagem 100%', valor: 0 },
+        { nome: 'Turbo', valor: 0 },
+      ],
+    ];
+
+    const discountsData = [
+      { empresa: 'EMPRESA-1', porcentagem: 20 },
+      { empresa: 'EMPRESA-2', porcentagem: 10 },
+    ];
+
+    function createTableRow(item, valor) {
+      const row = document.createElement('tr');
+      const itemCell = document.createElement('td');
+      const valorCell = document.createElement('td');
+      const checkboxCell = document.createElement('td');
+      const checkbox = document.createElement('input');
+
+      itemCell.textContent = item;
+      valorCell.textContent = valor.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+
+      checkbox.type = 'checkbox';
+      checkbox.className = 'item-checkbox';
+      checkbox.dataset.valor = valor;
+
+      checkbox.addEventListener('change', updateTotal);
+
+      checkboxCell.appendChild(checkbox);
+      row.appendChild(itemCell);
+      row.appendChild(valorCell);
+      row.appendChild(checkboxCell);
+
+      return row;
+    }
+
+    function populateTables() {
+      const tables = document.querySelectorAll('.item-list');
+
+      tables.forEach((table, index) => {
+        const data = tablesData[index];
+
+        data.forEach(item => {
+          const row = createTableRow(item.nome, item.valor);
+          table.appendChild(row);
+        });
+      });
+    }
+
+    function populateDiscountTable() {
+      const discountTable = document.querySelector('.discount-list');
+
+      discountsData.forEach(discount => {
+        const row = document.createElement('tr');
+        const empresaCell = document.createElement('td');
+        const porcentagemCell = document.createElement('td');
+        const checkboxCell = document.createElement('td');
+        const checkbox = document.createElement('input');
+
+        empresaCell.textContent = discount.empresa;
+        porcentagemCell.textContent = discount.porcentagem + '%';
+
+        checkbox.type = 'checkbox';
+        checkbox.className = 'discount-checkbox';
+        checkbox.dataset.porcentagem = discount.porcentagem;
+
+        checkbox.addEventListener('change', updateTotal);
+
+        checkboxCell.appendChild(checkbox);
+        row.appendChild(empresaCell);
+        row.appendChild(porcentagemCell);
+        row.appendChild(checkboxCell);
+
+        discountTable.appendChild(row);
+      });
+    }
+
+    function updateTotal() {
+      const checkboxes = document.querySelectorAll('.item-checkbox');
+      const discountCheckboxes = document.querySelectorAll('.discount-checkbox');
+      let total = 0;
+      let totalDiscounted = 0;
+      let totalDescontos = 0;
+
+      checkboxes.forEach(checkbox => {
+        if (checkbox.checked) {
+          const valor = parseFloat(checkbox.dataset.valor);
+          total += valor;
+        }
+      });
+
+      discountCheckboxes.forEach(checkbox => {
+        if (checkbox.checked) {
+          totalDescontos += parseFloat(checkbox.dataset.porcentagem);
+        }
+      });
+
+      totalDiscounted = total * (1 - totalDescontos / 100);
+
+      document.getElementById('total-value').textContent = total.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+      document.getElementById('total-discounted-value').textContent = totalDiscounted.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+    }
+
+    function scrollToTop() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function resetCheckboxes() {
+      const checkboxes = document.querySelectorAll('.item-checkbox, .discount-checkbox');
+      checkboxes.forEach(checkbox => checkbox.checked = false);
+      updateTotal();
+    }
+
+    window.addEventListener('scroll', function() {
+      const scrollToTopButton = document.querySelector('.scroll-to-top');
+      if (window.scrollY > 300) {
+        scrollToTopButton.style.display = 'block';
+      } else {
+        scrollToTopButton.style.display = 'none';
+      }
+    });
+
+    document.addEventListener('DOMContentLoaded', function() {
+      populateTables();
+      populateDiscountTable();
+    });
+  </script>
+</body>
+</html>
