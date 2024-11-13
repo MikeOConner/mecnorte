@@ -10,17 +10,17 @@
       margin: 0;
       padding: 0;
       background-color: #3b3b3b;
-      color: rgb(255, 255, 255);
+      color: rgb(0, 0, 0);
     }
 
     .container {
       width: 80%;
-      max-width: 1200px;
+      max-width: 1800px;
       margin: 20px auto;
       padding: 20px;
-      background-color: #505050;
+      background-color: #ffffff;
       border-radius: 25px;
-      box-shadow: 0 0 40px rgb(253, 253, 253);
+      box-shadow: 0 0 40px rgba(241, 197, 1, 0.61);
       overflow: hidden;
     }
 
@@ -54,7 +54,7 @@
     }
 
     th {
-      background-color: #080808;
+      background-color: #f7d308;
     }
     
     .total {
@@ -77,7 +77,7 @@
       right: 20px;
       bottom: 20px;
       background-color: #4CAF50;
-      color: #dddddd;
+      color: #ffffff;
       padding: 10px 20px;
       border-radius: 5px;
       cursor: pointer;
@@ -116,7 +116,7 @@
 </head>
 <body>
   <div class="container">
-    <img src="CALCULADORA.png" alt="" width="350"/>
+    <img src="CALCULADORA.png" alt="" width="700"/>
 
     <div class="table-row">
       <div class="table-container">
@@ -155,7 +155,7 @@
       </div>
 
       <div class="table-container">
-        <h2>ESTRUTURA</h2>
+        <h2>OUTROS</h2>
         <table class="item-list">
           <tr>
             <th>Item</th>
@@ -208,78 +208,83 @@
   <script>
     const tablesData = [
       [
-        { nome: 'Cor primaria', valor: 3000 },
+        { nome: 'Primaria', valor: 3000 },
+        { nome: 'Secundaria', valor: 3000 }, 
         { nome: 'Perolado', valor: 3000 },
-        { nome: 'Cor secundaria', valor: 3000 },
-        { nome: 'Pintura placa', valor: 1500 },
-        { nome: 'Xenon aplicar', valor: 2000 },
-        { nome: 'Xenon + cor', valor: 3000 },
-        { nome: 'Neon aplicar', valor: 2000 },
-        { nome: 'Neon + cor', valor: 3000 }
+        { nome: 'Interior', valor: 3000 },
+        { nome: 'Cor da Roda', valor: 3000 },
       ],
       [
-        { nome: 'Trocar RODA', valor: 3000 },
-        { nome: 'Conserto Pneu', valor: 0 },
-        { nome: 'Cor Roda', valor: 3000 },
-        { nome: 'Custom', valor: 0 },
-        { nome: 'Drift', valor: 0 },
-        { nome: 'Fumaça', valor: 0 },
-        { nome: 'Blindagem normal', valor: 0 },
-        { nome: 'Blindagem policia', valor: 0 },
+        { nome: 'Rodas', valor: 3000 },
+        { nome: 'Custom', valor: 3000 },
+        { nome: 'Drift', valor: 3000 },
+        { nome: 'Fumaça Pneu', valor: 2000 },
       ],
       [
-        { nome: 'Adesivo/Decal 1 a 7', valor: 0 },
-        { nome: 'Fume', valor: 2000 },
-        { nome: 'Buzina', valor: 0 },
-        { nome: 'Interior', valor: 0 },
-        { nome: 'Exterior', valor: 0 },
-        { nome: 'Extra', valor: 0 },
-        { nome: 'Extra I', valor: 0 },
-        { nome: 'Extra II', valor: 0 },
-        { nome: 'Extra III', valor: 0 },
-        { nome: 'Extra IV', valor: 0 },
-        { nome: 'Extra V', valor: 0 },
+        { nome: 'Aerofolio', valor: 3000 },
+        { nome: 'Rear Bumper', valor: 3000 },
+        { nome: 'Side Skirt', valor: 3000 },
+        { nome: 'Front Bumper', valor: 3000 },
+        { nome: 'Hood', valor: 3000 },
+        { nome: 'Roof', valor: 3000 },
+        { nome: 'Grille', valor: 3000 },
+        { nome: 'Roll Cage', valor: 3000 },
+        { nome: 'Exhaust', valor: 3000 },
+        { nome: 'Livery', valor: 3000 },
+        { nome: 'Left Fender', valor: 3000 },
+        { nome: 'Rigth Fender', valor: 3000 },
+        { nome: 'Horns', valor: 3000 },
+        { nome: 'Window Tint', valor: 3000 },
+        { nome: 'Plate Index', valor: 3000 },
+        { nome: 'Vanity Plates', valor: 3000 },
+        { nome: 'Trim A', valor: 3000 },
+        { nome: 'Trim B', valor: 3000 },
+        { nome: 'Dashboard', valor: 3000 },
+        { nome: 'Dial', valor: 3000 },
+        { nome: 'Door Speaker', valor: 3000 },
+        { nome: 'Seats', valor: 3000 },
+        { nome: 'Steering Wheel', valor: 3000 },
+        { nome: 'Engine Block', valor: 3000 },
+        { nome: 'Air Filter', valor: 3000 },
+        { nome: 'Strut', valor: 3000 },
+        { nome: 'Arch Cover', valor: 3000 },
+        { nome: 'Aerial', valor: 3000 },
       ],
       [
-        { nome: 'Aerofólio', valor: 3000 },
-        { nome: 'Para-choque Dianteiro', valor: 3000 },
-        { nome: 'Para-choque Traseiro', valor: 3000 },
-        { nome: 'Saias', valor: 3000 },
-        { nome: 'Escapamento', valor: 3000 },
-        { nome: 'Para-lama Dianteiro', valor: 3000 },
-        { nome: 'Para-lama Traseiro', valor: 3000 },
-        { nome: 'Chasssi', valor: 3000 },
-        { nome: 'Porta', valor: 3000 },
-        { nome: 'Capa de farol', valor: 3000 },
-        { nome: 'Grelha', valor: 3000 },
-        { nome: 'Capo 1 a 9', valor: 3000 },
-        { nome: 'Teto 1 a 9', valor: 3000 },
+        { nome: 'Xenon', valor: 2000 },
+        { nome: 'Cor Xenon', valor: 3000 },
+        { nome: 'Neon Todos os Lados', valor: 8000 },
+        { nome: 'Neon Direito', valor: 2000 },
+        { nome: 'Neon Esquerdo', valor: 2000 },
+        { nome: 'Neon Frente', valor: 2000 },
+        { nome: 'Neon Traseiro', valor: 2000 },
+        { nome: 'Cor Neon', valor: 3000 },
+        { nome: 'Kit Reparo', valor: 1800 },
+        { nome: 'Pneus', valor: 800 },
+        { nome: 'Nitro', valor: 0 },
+      
       ],
       [
-        { nome: 'Motor I', valor: 0 },
-        { nome: 'Motor II', valor: 0 },
-        { nome: 'Motor III', valor: 0 },
-        { nome: 'Motor IV', valor: 0 },
-        { nome: 'Motor V', valor: 0 },
-        { nome: 'Freios I', valor: 0 },
-        { nome: 'Freios II', valor: 0 },
-        { nome: 'Freios III', valor: 0 },
-        { nome: 'Freios IV', valor: 0 },
-        { nome: 'Transmissão I', valor: 0 },
-        { nome: 'Transmissão II', valor: 0 },
-        { nome: 'Transmissão III', valor: 0 },
-        { nome: 'Transmissão IV', valor: 0 },
-        { nome: 'Suspensão I', valor: 0 },
-        { nome: 'Suspensão II', valor: 0 },
-        { nome: 'Suspensão III', valor: 0 },
-        { nome: 'Suspensão IV', valor: 0 },
-        { nome: 'Suspensão V', valor: 0 },
-        { nome: 'Blindagem 20%', valor: 0 },
-        { nome: 'Blindagem 40%', valor: 0 },
-        { nome: 'Blindagem 60%', valor: 0 },
-        { nome: 'Blindagem 80%', valor: 0 },
-        { nome: 'Blindagem 100%', valor: 0 },
-        { nome: 'Turbo', valor: 0 },
+        { nome: 'Motor I', valor: 30000 },
+        { nome: 'Motor II', valor: 60000 },
+        { nome: 'Motor III', valor: 90000 },
+        { nome: 'Motor IV', valor: 120000 },
+        { nome: 'Freios I', valor: 20400 },
+        { nome: 'Freios II', valor: 40800 },
+        { nome: 'Freios III', valor: 61200 },
+        { nome: 'Transmissão I', valor: 28750 },
+        { nome: 'Transmissão II', valor: 57500 },
+        { nome: 'Transmissão III', valor: 86250 },
+        { nome: 'Suspensão I', valor: 20400 },
+        { nome: 'Suspensão II', valor: 40800 },
+        { nome: 'Suspensão III', valor: 61200 },
+        { nome: 'Suspensão IV', valor: 81600 },
+        { nome: 'Blindagem 20%', valor: 34500 },
+        { nome: 'Blindagem 40%', valor: 69000 },
+        { nome: 'Blindagem 60%', valor: 103500 },
+        { nome: 'Blindagem 80%', valor: 138000 },
+        { nome: 'Blindagem 100%', valor: 172500 },
+        { nome: 'Turbo', valor: 30000 },
       ],
     ];
 
